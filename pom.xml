@@ -120,7 +120,7 @@
 					<archive>
 						<addMavenDescriptor>true</addMavenDescriptor>
 					</archive>
-					<outputDirectory>${project.build.directory}/../../bin</outputDirectory>
+<!--					<outputDirectory>${project.build.directory}/../../bin</outputDirectory>-->
 				</configuration>
 			</plugin>
 		</plugins>
