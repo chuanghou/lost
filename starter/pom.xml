@@ -43,7 +43,22 @@
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
-                            <excludeGroupIds>com.stellariver.milky.demo</excludeGroupIds>
+                            <excludeGroupIds>com.stellariver.milky.demo,com.example.lost</excludeGroupIds>
+                            <outputDirectory>${project.basedir}/../lib</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-dependencies-own</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeGroupIds>com.example.lost</includeGroupIds>
+                            <excludeArtifactIds>controller</excludeArtifactIds>
                             <outputDirectory>${project.basedir}/../lib</outputDirectory>
                             <overWriteReleases>false</overWriteReleases>
                             <overWriteSnapshots>false</overWriteSnapshots>
