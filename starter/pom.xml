@@ -15,6 +15,14 @@
             <artifactId>ajc</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.example.lost</groupId>
+            <artifactId>controller</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
@@ -35,7 +43,22 @@
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
-                            <excludeGroupIds>com.stellariver.milky.demo</excludeGroupIds>
+                            <excludeGroupIds>com.stellariver.milky.demo,com.example.lost</excludeGroupIds>
+                            <outputDirectory>${project.basedir}/../lib</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-dependencies-own</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeGroupIds>com.example.lost</includeGroupIds>
+                            <excludeArtifactIds>controller</excludeArtifactIds>
                             <outputDirectory>${project.basedir}/../lib</outputDirectory>
                             <overWriteReleases>false</overWriteReleases>
                             <overWriteSnapshots>false</overWriteSnapshots>
@@ -43,6 +66,21 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${project.basedir}/../lib</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${project.basedir}/../bin</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
             </plugin>
         </plugins>
     </build>

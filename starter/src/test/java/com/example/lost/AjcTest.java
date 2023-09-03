@@ -2,6 +2,7 @@ package com.example.lost;
 
 
 import com.example.lost.controller.TestController;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +15,7 @@ public class AjcTest {
 
     @Test
     public void testController() {
-        testController.test();
+        Assertions.assertEquals("from aspect!", testController.test());
     }
 
 }
